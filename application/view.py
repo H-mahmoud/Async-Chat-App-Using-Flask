@@ -39,8 +39,8 @@ def home():
 @session_validation
 def login():
     if "name" in request.form:
-        name = re.sub("[^A-Za-z0-9_@. ]", "", request.form["name"])
-        ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+        name = re.sub("[^A-Za-z0-9:]", "", request.form["name"])
+        ip = name = re.sub("[^A-Za-z0-9:]", "",request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
 
         check = Database.add_user(name, ip)
 
