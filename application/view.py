@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, request, session, Blueprint, current_app, session
+from flask import render_template, redirect, request, session, Blueprint, session
 from .database import Database
 import re
 from functools import wraps
@@ -40,10 +40,9 @@ def home():
 def login():
     if "name" in request.form:
         name = re.sub("[^A-Za-z0-9_@. ]", "", request.form["name"])
-        ip = request.remote_addr
-        session_id = ""
+        ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
 
-        check = Database.add_user(name, ip, session_id)
+        check = Database.add_user(name, ip)
 
         if check == True:
             session["name"] = name

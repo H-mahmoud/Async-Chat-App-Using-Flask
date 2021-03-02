@@ -1,8 +1,6 @@
-from flask import request, session
+from flask import session
 from application.app import create_app
-from config import Config
-from application.database import Database
-from flask_socketio import SocketIO, send, emit, join_room, leave_room
+from flask_socketio import SocketIO, send, join_room
 from datetime import datetime
 
 app = create_app()
