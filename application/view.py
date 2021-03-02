@@ -42,8 +42,6 @@ def login():
         name = re.sub("[^A-Za-z0-9 ]", "", request.form["name"])
         ip = re.sub("[^A-Za-z0-9:.]", "",request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
 
-        print(name, ip)
-
         check = Database.add_user(name, ip)
 
         if check == True:
@@ -51,7 +49,8 @@ def login():
             session["ip"] = ip
             return redirect("/chat_room")
         else:
-            return redirect(f"/?alert = {check}")
+            print(check)
+            return redirect("/?alert")
 
     return redirect("/")
 
@@ -70,5 +69,6 @@ def logout():
             session.clear()
             return redirect("/")
         else:
-            return redirect(f"/chat_room?alert = {check}")
+            print(check)
+            return redirect(f"/chat_room?alert")
     return redirect("/chat_room")
