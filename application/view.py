@@ -39,8 +39,10 @@ def home():
 @session_validation
 def login():
     if "name" in request.form:
-        name = re.sub("[^A-Za-z0-9:]", "", request.form["name"])
-        ip = name = re.sub("[^A-Za-z0-9:]", "",request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+        name = re.sub("[^A-Za-z0-9 ]", "", request.form["name"])
+        ip = re.sub("[^A-Za-z0-9:.]", "",request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+
+        print(name, ip)
 
         check = Database.add_user(name, ip)
 
@@ -56,8 +58,7 @@ def login():
 @view.route("/chat_room")
 @login_required
 def chat_room():
-    active_users = Database.ip_users_count(session["ip"])
-    return render_template("chat_room.html", active_users = active_users)
+    return render_template("chat_room.html")
         
 @view.route("/logout")
 @login_required

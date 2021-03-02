@@ -14,7 +14,6 @@
         </nav>
         
         <div class="container-fluid" style="height: 80%">
-            <small> Active Users: {{ active_users }} </small>
             <div class="row" style="margin-top: 2%; height: 100%;">
                 <div class="col-lg-3 col-md-3 col-sm-3"></div>
                 
@@ -62,8 +61,6 @@
 
             $('#send-button').on('click', function() {
 
-                console.log($('#my-message').val())
-
                 socket.send($('#my-message').val());
 
                 $('#my-message').val('');
@@ -74,6 +71,8 @@
 
                 massage = '<tr><td class="massage"><ul class="info"><li class="name">'+msg["name"]+'</li><li class="content">'+msg["msg"]+'</li><li class="time">'+msg["time"]+'</li></ul></td><td></td></tr>'
                 $("#massage-table").append(massage);
+                var objDiv = document.getElementById("chat-box");
+                objDiv.scrollTop = objDiv.scrollHeight;
 
             });
 

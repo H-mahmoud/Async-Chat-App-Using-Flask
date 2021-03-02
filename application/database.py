@@ -40,17 +40,3 @@ class Database:
             return e.args
         
         return True
-
-    @staticmethod
-    def ip_users_count(ip):
-        count = 0
-        try:
-            cur = Database.conn.connection.cursor()
-            cur.execute(f"SELECT count(id) from users where ip = '{ip}'")
-            count = cur.fetchone()
-            cur.close()
-
-        except Exception as e:
-            return e.args
-        
-        return count[0]
