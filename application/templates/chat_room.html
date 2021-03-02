@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+        {% block title %}Chat Room{% endblock %}
+
+        {% block body %}
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <span class="navbar-brand mb-0 h1">Chat App</span>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="container-fluid" style="height: 80%">
+            <small> Active Users: {{ active_users }} </small>
+            <div class="row" style="margin-top: 2%; height: 100%;">
+                <div class="col-lg-3 col-md-3 col-sm-3"></div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 chat-box" id="chat-box" style="height: 100%;">
+                    <div class="chat-caption">
+                        Start Typing And Make New Freinds 
+                    </div>
+                    
+                    <div class="massages">
+                        <table class="table" id = "massage-table">
+                            
+                            
+                        </table>
+                    </div>
+                    
+                    <hr>
+                    <div class="send-massage">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" id="my-message" placeholder="Write your massage">
+                          <div class="input-group-append">
+                            <button class="btn btn-inline-secondary btn-warning" id="send-button" type="submit">Send</button>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+        <script>
+            var objDiv = document.getElementById("chat-box");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        </script>
+
+        <script type="text/javascript">
+            var socket = io.connect('http://127.0.0.1:5000/chat_room');
+
+            socket.on('connect', function() {
+                socket.emit('connected','User has connected!');
+            });
+
+            $('#send-button').on('click', function() {
+
+                console.log($('#my-message').val())
+
+                socket.send($('#my-message').val());
+
+                $('#my-message').val('');
+
+            });
+
+            socket.on('message', function(msg) {
+
+                massage = '<tr><td class="massage"><ul class="info"><li class="name">'+msg["name"]+'</li><li class="content">'+msg["msg"]+'</li><li class="time">'+msg["time"]+'</li></ul></td><td></td></tr>'
+                $("#massage-table").append(massage);
+
+            });
+
+        </script>
+
+        {% endblock %}
+	   

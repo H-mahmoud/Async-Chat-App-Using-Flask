@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+        {% block title %}Home{% endblock %}
+
+        {% block body %}
+        <!-- Navbar -->
+        <nav class="navbar">
+          <span class="navbar-brand mb-0 h1">Chat App</span>
+        </nav>
+        
+        <div class="container-fluid">
+            <div class="row" style="margin-top: 10%; ">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4 login-box">
+                    <form method="POST" action="/login">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter your name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your name">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Join Your Room</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+	   

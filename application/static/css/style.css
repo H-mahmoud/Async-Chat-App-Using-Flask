@@ -1,0 +1,156 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #F9D342;
+    height: 100%;
+    
+}
+
+nav {
+    background-color: #292826;
+    color: white;
+}
+
+nav a {
+    font-size: 15px;
+    color: white;
+}
+
+nav a:hover {
+    color: gray;
+}
+
+.login-box {
+    
+    background-color: #292826;
+    color: white;
+    width: 100%;
+    padding: 2%;
+    border-radius: 8px;
+    
+}
+
+.login-box .btn-warning {
+    margin-top: 15px;
+    width: 100%;
+    color: #292826;
+    background-color: #F9D342;
+    border: 1px solid #ceae35;
+}
+
+.login-box .btn-warning:hover {
+    font-weight: bold;
+    background-color: #ceae35;
+}
+
+.chat-box {
+    background-color: #292826;
+    width: 100%;
+    padding: 2%;
+    padding-bottom: 5px;
+    overflow-y: scroll;
+	text-align:justify; 
+    
+}
+
+.chat-box .chat-caption{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    
+}
+
+.chat-box .massages{
+    padding-top: 30px;
+    color: white;
+    
+}
+
+/*Large screen*/
+@media (min-width: 1200px)
+{
+    .chat-box .massages{
+        min-height: 70%;
+
+    }
+}
+
+/*Large screen*/
+@media (min-width: 1200px)
+{
+    .chat-box .massages{
+        min-height: 77%;
+
+    }
+}
+
+/*Other screens*/
+@media (min-width: 342px) and (max-width: 1199px)
+{
+    .chat-box .massages{
+        min-height: 70%;
+
+    }
+}
+
+/*small screens*/
+@media (max-width: 341px)
+{
+    .chat-box .massages{
+        padding-top: 30px;
+        color: white;
+        min-height: 50%;
+
+    }
+}
+
+.chat-box .massages table tr{
+    border-bottom: 15px solid #292826;
+}
+
+.chat-box .massages table td{
+    border: 0px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.chat-box .massages table .massage{
+    background-color: gray;
+    
+}
+
+.chat-box .massages table .massage .info{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+}
+
+.chat-box .massages table .massage .info .content{
+    margin: 5px;
+    margin-left: 20px;
+}
+
+.chat-box .massages table .massage .info .time{
+    float: right;
+}
+
+.chat-box hr {
+    background-color: #F9D342;
+    width: 100%;
+    padding-top: 1px;
+    
+}
+
+.chat-box .btn-warning {
+    color: #292826;
+    background-color: #F9D342;
+    border: 1px solid #ceae35;
+}
+
+.chat-box .btn-warning:hover {
+    background-color: #ceae35;
+}
